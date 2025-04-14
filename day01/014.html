@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>다섯번째 타입 : object</title>
+</head>
+<body>
+  <script>
+    // 색깔이 있거나 화살표가 있으면 객체
+    // 배열(Array) : 파이썬의 리스트, 자바의 ArrayList 에 해당
+    let a = [10, 20, 30];
+    console.log(a);
+    console.log(typeof a);   // object
+
+    // 파이썬의 딕셔너리
+    // b = {'이름':'홍길동', '나이':20}
+    let b = {이름:'홍길동', 나이:20};
+    console.log(b);
+    console.log(typeof b);  // object
+
+    // 자바 : 가리키는 대상이 없는 참조변수는 null 값을 가진다
+    // js 에서는 null 이 타입
+    let c = null;
+    console.log(c);
+    console.log(typeof c);  // null 이지만 object 라고 나옴 (버그)
+  </script>
+</body>
+</html>

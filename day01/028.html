@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>타입 변환하기</title>
+</head>
+<body>
+  <script>
+    const a = '100';
+    // 타입을 언어가 변환 : 암시적 변환, 묵시적 변환
+    // 타입을 개발자가 변환 : 명시적 변환 (이게 좋음!)
+
+    const num = Number(a);
+    console.log(num);
+    console.log(a);
+    // 검정색은 글자, 파란색은 숫자
+
+    const b = 'hello';
+    // 자바라면 예외상황임 → 그래서 자바스크립트는 NaN 이라는 특수한 값을 만들었다
+    // if 문 한 줄만 올 때는 중괄호 생략 가능
+    const num2 = Number(b);
+    console.log(num2);
+    if(isNaN(num2))
+      console.log('숫자만 입력 가능합니다');
+    else
+      console.log(num2);
+  </script>
+</body>
+</html>

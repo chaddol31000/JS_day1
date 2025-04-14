@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 버튼을 클릭하면 숫자를 입력 받아 출력하시오 -->
+   <button onclick="clickHandler();">출력하기</button>
+   <button onclick="clickHandler2();">제곱하기</button>
+   <script>
+
+    function clickHandler() {
+      const num = prompt('숫자를 입력하세요');
+      if(num)
+        alert(num);
+      else
+        alert('출력에 실패했습니다');
+    }
+
+    function clickHandler2() {
+      const add = prompt('숫자를 입력하세요');
+      // const result = add * add;
+      // if (result)
+      //    alert(result);
+      // else
+      //  alert('출력에 실패했습니다');
+      if (add)
+        alert(add*add);
+      else
+        alert('출력에 실패했습니다');
+    }
+   </script>
+</body>
+</html>

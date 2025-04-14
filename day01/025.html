@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>숫자를 입력받아 제곱해서 출력하기 1</title>
+</head>
+<body>
+  <!-- 클릭하면(event) -->
+  <button ondblclick="dbClickHandler();">삭제</button>
+  <!-- 코드를 함수 안에 집어 넣고 상호작용하는 함수와 합친다 -->
+  <!-- onclick="clickHandler();" -->
+  <script>
+    // JS 에서 사용자와 상호작용하는 함수
+      // alert()
+      // prompt()
+      // confirm()
+
+      // alert('hello');
+      // true/false
+      // function = def
+      
+      function clickHandler() {
+        const response = confirm('삭제하시겠습니까?');
+        if(response)
+          alert('삭제합니다');
+        else
+          alert('삭제를 취소했습니다');
+      }
+
+      function dbClickHandler() {
+        const name = prompt('이름을 입력하세요');
+        alert(name);
+      }
+
+  </script>
+</body>
+</html>

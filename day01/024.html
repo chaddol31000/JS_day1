@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>산술연산 3 : js 는 되는 방향으로 움직인다</title>
+</head>
+<body>
+  <script>
+    const a = 10;
+    const b = 'hello';
+    console.log(a+b);      // "10hello"
+
+    const c = '10';
+
+    // 자바는 정적타입 : int a = 10 | a = a + 3.14;
+    // 파이썬은 동적타입이지만 파이썬이 알아서 타입을 변환하지는 않는다 (타입 변환은 개발자가 한다)
+    // JS 는 동적타입이지만 JS 가 타입을 마음대로 바꾼다
+    
+    console.log(a+b);      // "1010"
+    console.log(a*c);      // 100
+    console.log(a/c);      // 1 
+    console.log(typeof c); // 타입은 그대로지만 a/c 를 했을 때 타입을 바꿔서 알아서 계산한다
+    console.log(a*b);      // NaN (Not a Number : 숫자가 없다) ← 내장객체 
+  </script>
+</body>
+</html>

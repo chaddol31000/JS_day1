@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>자바스크립트의 위치</title>
+  <script>
+    // null 인 이유 : demo 가 만들어지지 않았기 때문
+    // 현재 같은 경우는 body 뒤쪽에 생성해야함
+    // demo 앞에서 만들면 무조건 demo 를 불러올 수 없기 때문에 null 이 떨어짐
+    console.log(document.getElementById('demo'));      // null
+    document.getElementById('demo').textContent='헤더에서 변경';
+  </script>
+</head>
+<body>
+  <div id="demo"></div>
+  <script>
+    console.log(document.getElementById('demo'));       // <div id='demo'>
+    document.getElementById('demo').textContent='body에서 변경'
+  </script>
+</body>
+</html>

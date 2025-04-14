@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 국어 점수와 영어 점수를 입력받아 모두 70점 이상이면 합격, 아니면 불합격 -->
+
+  <input type="number" id="kor" placeholder="국어 점수 입력">
+  <input type="number" id="eng" placeholder="영어 점수 입력">
+  <button onclick="clickHandler();">결과 확인하기</button>
+  <div>결과 : <span id="result"></span></div>
+  
+  <script>
+    function clickHandler() {
+      const korScore = document.getElementById('kor').value;
+      const engScore = document.getElementById('eng').value;
+      if(korScore =='' || engScore == '') {
+        alert('점수를 입력하세요');
+        return false;
+      }
+      const resultSpan = document.getElementById('result');
+      if(korScore >=70 && engScore >=70) {
+        resultSpan.textContent='합격입니다'
+      } else {
+        resultSpan.textContent='불합격입니다'
+      }
+    }
+  </script>
+  
+</body>
+</html>

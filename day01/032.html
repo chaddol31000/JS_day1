@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 점수를 입력받아 70점 이상이면 합격, 아니면 불합격이라고 출력 -->
+  <input type="number" id="score" placeholder="점수를 입력하세요">
+  <button onclick="clickHandler();">판정</button>
+  <hr>
+  <div>판정 결과 : <span id="result">점수를 입력하세요</span></div>
+
+  <script>
+    function clickHandler() {
+      // 타입이 number 로 지정하면 숫자에 해당하는 문자열을 입력 받는다 
+      const score = document.getElementById('score').value;
+      if (score=='') {
+        alert('숫자를 입력하세요');
+        return false;
+      }
+      const resultSpan = document.getElementById('result');
+      console.log(score);
+      if (score>=70){
+        resultSpan.textContent = '축하합니다. 합격입니다.';
+      } else {
+        resultSpan.textContent = '불합격입니다.';
+      }
+    }
+  </script>
+</body>
+</html>

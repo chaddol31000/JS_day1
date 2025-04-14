@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="demo">hello</div>
+    <script>
+      window.document.getElementById('demo').textContent='안녕하세요 자바스크립트';
+      window.console.log(window.navigator.userAgent);
+    </script>
+  <!--
+    BOM 에서 
+    window.location : 주소표시줄 
+    window.history : 앞으로, 뒤로
+      ㄴ window.history.back() : 뒤로가기
+      ㄴ window.history.front() : 앞으로 가기
+    window.navigator : 브라우저 정보 (ex. 우리 사이트는 크롬에서만 사용 가능합니다)
+    window.document : html 출력하는 영역
+
+    보통 js 로 주로 다루는 영역은 window.document → BOM 에서 document 만 떼서 DOM(Document Object Model)
+    -->
+
+  <!--
+    jinja2, thymeleaf :  server-side 기술. 서버에서 실행되어 html 생성 → 사용자에게 response
+                         서버측 기술이기 때문에 파이썬 또는 자바 코드가 실행이 가능함
+    자바스크립트 : 프론트엔드 기술. 서버에서 데이터를 수신한 다음 사용자 컴퓨터에서 화면 생성
+        
+  -->
+
+</body>
+</html>
