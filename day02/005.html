@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!--
+    버튼을 클릭하면 현재 시간을 출력하는 코드
+  -->
+  <h1> 현재 시간 </h1>
+  <button onclick="times();">확인하기</button>
+  <div>현재시간은 <span id="result"></span></div>
+
+  <script>
+    function times() {
+      const now = new Date();
+      document.getElementById('result').textContent=now;
+    }
+  </script>
+
+  
+</body>
+</html>

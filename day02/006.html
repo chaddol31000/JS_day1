@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <span id="target">1</span>
+  <button onclick="increasenum();">증가</button>
+  <script>
+    // 버튼을 추가
+    // 클릭하면 값이 1씩 증가
+
+    function increasenum() {
+      // const targetSpan = document.getElementById('target').value;
+      // if (targetSpan) {
+      //  targetSpan+1;
+      // }
+
+      // 동작하지 않을 때는 alert(); 을 한 번 걸어서 뭐가 문제인지 확인하기
+      let value = document.getElementById('target').textContent;
+      document.getElementById('target').textContent=++value;
+      
+      
+    }
+  </script>
+</body>
+</html>

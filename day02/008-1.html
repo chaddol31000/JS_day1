@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>008 선생님 답</title>
+</head>
+<body>
+  <div>
+    <img src="https://pbs.twimg.com/media/GofvqBWW4AARqLk?format=jpg&name=4096x4096" width="180px">
+  </div>
+  <div>
+    <span>250414 인기가요 A5</span>
+    <span id="price">26000</span>원
+  </div>
+  <div>
+    <button onclick="감소();">-</button>
+    <span id="count">1</span>
+    <button onclick="증가();">+</button>
+  </div>
+  <div>
+    구매 예정 금액 : <span id="total-price">26000</span>원
+  </div>
+  <script>
+    // 아래 const 는 한 번만 실행한다
+    const price = document.getElementById('price').textContent;
+    const countElement = document.getElementById('count');
+    const totalPriceElement = document.getElementById('total-price');
+
+    function 계산(count) {
+      const totalPrice = count * price;
+      countElement.textContent=count;
+      totalPriceElement.textContent=totalPrice;
+    }
+
+
+    function 증가() {
+      let count = countElement.textContent;
+      count++;
+      계산(count);
+    }
+
+    function 감소() {
+      let count = countElement.textContent;
+      if(count>1) {
+        count--;
+      }
+      계산(count);
+    }
+  </script>
+</body>
+</html>

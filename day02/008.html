@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <img src="https://pbs.twimg.com/media/GofvqBWW4AARqLk?format=jpg&name=4096x4096" width="180px">
+  </div>
+  <div>
+    <span>도쿄 인기가요 a5</span>
+    <span>26000</span>원
+  </div>
+  <div>
+    <button onclick="drop();">-</button>
+    <span id="target">1</span>
+    <button onclick="add();">+</button>
+  </div>
+  <div>
+    구매 예정 금액 : <span id="price">26000</span>원
+  </div>
+  <script>
+    // + 버튼을 클릭하면 개수 증가, 구매 예정 금액 변경
+    // - 버튼을 클릭하면 개수 감소, 구매 예정 금액 변경
+    // 개수는 1보다 작아질 수 없음
+    targetSpan = document.getElementById('target').textContent;
+    priceSpan = document.getElementById('price').textContent;
+    
+    function drop() {
+      let target = targetSpan;
+      document.getElementById('target').textContent=--target;
+      if(--target==0 && --price>26000) {
+        let price = priceSpan;
+        document.getElementById('price').textContent=--price;
+      } else {
+        alert('최소 주문 수량은 1개 입니다');
+        document.getElementById('target').textContent=1;
+        document.getElementById('price').textContent=26000;
+        return;
+      }
+    }
+
+    targetSpan = document.getElementById('target').textContent;
+    priceSpan = document.getElementById('price').textContent;
+    function add() {
+      let target = targetSpan;
+      document.getElementById('target').textContent=++target;
+
+      let price = priceSpan;
+      document.getElementById('price').textContent=++price;
+
+    }
+
+
+  </script>
+</body>
+</html>

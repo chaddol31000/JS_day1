@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    {
+      // 스코프 개념이 없다. 무조건 사용가능
+      a = 10;
+      // 함수가 스코프
+      var b = 20;
+      // const, let 은 자바와 마찬가지로 { } 가 스코프
+      const c = 30;
+    }
+
+    function aaa() {
+      // 함수가 스코프 그래프. 함수 밖서는 사용 x
+      x = 10;
+      var y = 20;
+      // z 는 함수 소속(함수 스코프는 아니지만 함수도 {} 가 없잖아)
+      const z = 30;
+    }
+  </script>
+</body>
+</html>

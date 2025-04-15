@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>증가, 감소</h1>
+  <button onclick="add();">증가</button>
+  <button onclick="drop();">감소</button>
+  <hr>
+  <div>현재 숫자: <span id="result">1</span></div>
+  <script>
+    // 증가, 감소버튼 카운터 만들기
+    function add() {
+      // 버튼은 눌리지만 값이 변하지 않는다면 console.log(result) 찍어보기
+      let result=document.getElementById('result').textContent;
+      document.getElementById('result').textContent=++result;
+
+    }
+    function drop() {
+      let result = document.getElementById('result').textContent;
+      document.getElementById('result').textContent=--result;
+
+      if(result<0) {
+        alert('더 이상 감소할 수 없습니다')
+        return document.getElementById('result').textContent=0;
+      }
+    }
+  </script>
+</body>
+</html>
