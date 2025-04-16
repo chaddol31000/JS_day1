@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>입장료</title>
+</head>
+<body>
+  입장료: <span id="price">6000</span>원
+  <br>
+  인원 : <span id="person">2</span>명
+  <br>
+  <button onclick="증가()">증가</button>
+  <button onclick="감소()">감소</button>
+
+  <script>
+    priceSpan = document.getElementById('price').textContent;
+    personSpan = document.getElementById('person').textContent;
+
+    function 증가() {
+      // 증가 버튼을 누르면? 인원, 입장료 증가
+      let person = personSpan;
+      document.getElementById('person').textContent = ++person;
+
+      let price = priceSpan;
+      document.getElementById('price').textContent = Number(price) + 3000;
+    }
+
+    function 감소() {
+      let person = personSpan;
+      document.getElementById('person').textContent = person--;
+
+      let price = priceSpan;
+      document.getElementById('price').textContent = Number(price) - 3000;
+    }
+
+
+    
+
+
+  </script>
+</body>
+</html>

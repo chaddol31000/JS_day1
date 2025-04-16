@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>점수 결과 확인하기</title>
+</head>
+<body>
+  <!--
+    점수를 입력받아 70점 이상이면 합격, 아니면 불합격이라고 출력
+      - 엔터키로 입력
+      - 합격인 경우 (75점 (합격)) 이라고 파란색으로
+      - 불합격인 경우 (55점 (불합격)) 이라고 빨간색으로
+  -->
+  <div>점수 :<input type="number" id="jumsu" onkeydown="pass(event)"></div>
+  <hr>
+  <div id="result"></div>
+
+  <script>
+    // 개빡침 출력이 안됨
+    const jumsuElement = document.getElementById('jumsu');
+    function pass(event) {
+      const pass = `<span style="color:blue">'결과 : ' + ${jumsuElement.value} + '합격'</span>`
+      const unpass = `<span style="color:red">'결과 : ' + ${jumsuElement.value} + '불합격'</span>`
+      if(event.key=='Enter' && jumsu>=70) {
+        result.innerHTML = pass;
+      } else if (event.key=='Enter' && jumsu<70) {
+        result.innerHTML = unpass;
+      } else {
+        
+      }
+
+    }
+  </script>
+</body>
+</html>

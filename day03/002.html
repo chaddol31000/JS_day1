@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>자연수는 블루, 음수는 레드</title>
+</head>
+<body>
+  <div id="counter">
+    <div id="count"></div>
+    <div>
+      <button onclick="inc()">+</button>
+      <button onclick="dec()">-</button>
+    </div>
+  </div>
+  <script>
+    let count = 0;
+    const countElement = document.getElementById('count');
+    countElement.innerHTML = `<span style="color:blue">${count}</span>`;
+     
+    function inc() {
+      count++;
+      let html = `<span style="color:blue">${count}</span>`;
+      if(count<0)
+        html = `<span style="color:red"></span>`;
+      countElement.innerHTML = html;
+      
+    }
+
+    function dec() {
+      count--;
+      countElement.textContent = count;
+      // const color = count>0? "blue":"red";
+      const html = `<span style="color: ${count>0? 'blue':'red'}">${count}</span>`;
+    }
+
+  </script>
+</body>
+</html>

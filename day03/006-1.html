@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>006.html 선생님 코드</title>
+</head>
+<body>
+  점수: <input type="number" id="jumsu" onkeydown="엔터(event)">
+  <button onclick="판정()">판정</button>
+  <hr>
+  <div id="result"></div>
+
+  <script>
+    const resultElement = document.getElementById('reuslt');
+
+    function 엔터(event) {
+      if(event.key=='Enter')
+        판정();
+    }
+
+    function 판정() {
+      // parseInt 를 사용하면 숫자를 입력하라고 뜬다 (현재 Number 를 사용하면 0점 처리 돼서 입력하라는 게 뜨지 않음)
+      // if(isNaN(jumsu)) {  // 점수가 숫자가 아닌지 확인
+        // resultElement.textContent = "숫자를 입력하세요"
+        // return;
+      // }
+      const jumsu = Number(document.getElementById('jumsu').value);
+      if(jumsu<0 || jumsu>100) { // 점수가 0보다 작거나 100보다 큰 지 확인
+        resultElement.innerHTML = "<div style='color:red'>점수는 0~100 점 사이입니다</div>";
+        return; 
+      }
+      if(jumsu>=70) {
+        result.innerHTML = "<div style='color:blue'>합격입니다</div>";
+      } else {
+        result.innerHTML = "<div style='color:hotpink'>불합격입니다</div>";
+      }
+    }
+  </script>
+</body>
+</html>

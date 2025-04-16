@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>007.html 선생님 코드</title>
+</head>
+<body>
+  <!-- View 역할을 함 -->
+  <div>입장료 총액: <span id="price"></span></div>
+  <div>인원: <span id="count"></span></div>
+  <div>
+    <button onclick="증가()">증가</button>
+    <button onclick="감소()">감소</button>
+  </div>
+  <script>
+    // Model 역할을 함
+    const fee = 3000;
+    let count = 1;
+    // 엘리먼트가 붙는 이유 : 엘리먼트를 잡아야 하는 걸 나타냄
+    const priceElement = document.getElementById('price');
+    // 이름이 같아도 상관 없음
+    const countElement = document.getElementById('count');
+
+    // 똑같은 코드가 자주 나온다면 하나의 함수를 만들어 빼서 간단하게 만들자
+    function 출력() {
+      priceElement.textContent = `${count * fee} 원`;
+      countElement.textContent = `${count} 명`;
+    }
+
+    function 증가() {
+      count++;
+      출력();
+    }
+
+    function 감소() {
+      if(count<=1)
+        return;
+      count--;
+      출력();
+    }
+
+  </script>
+</body>
+</html>
