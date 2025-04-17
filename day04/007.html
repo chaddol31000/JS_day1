@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!--
+    - 점수를 입력하면 점수를 출력한다
+    - 점수의 합계도 출력 (#result)
+  -->
+
+  <input type="number" id="num" onkeypress="입력(event)" placeholder="점수 입력">
+  <div id="result">합계: </div>
+  <ul id="target"></ul>
+
+  <script>
+    const ar = [];
+    const numElement = document.getElementById('num');
+    const resultElement = document.getElementById('result');
+    const ulElement = document.getElementById('target');
+    let sum=0;
+    
+    function 입력(event) {
+      if(event.key=='Enter'){
+      const num = Number(numElement.value);
+      ar.push(num);
+      sum+=num;
+      numElement.value='';
+      출력();  
+      }
+    }
+
+    function 출력() {
+      resultElement.innerHTML=`<b>합계: ${sum}</b>`
+      ulElement.innerHTML='';
+      // <ul> 밑에 <li></li>
+      for (const num of ar) {
+        const li = document.createElement('li');
+        li.textContent = num;
+        ulElement.appendChild(li);
+      
+      }
+    }
+  </script>
+</body>
+</html>

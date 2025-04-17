@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!--
+    숫자를 입력하면 출력(숫자와 버튼이 있다). 버튼을 클릭하면 숫자 삭제
+  -->
+  <ul id="target">
+  </ul>
+
+  <script>
+    const numbers = [10, 20, 30];
+    const ulElement = document.getElementById('target');
+
+    function remove(위치) {
+      // numbers.splice(위치, 삭제하는 갯수)
+      numbers.splice(위치,1);
+      printNumbers();
+    }
+
+    // 템플릿 문자열로 작성하는 게 더 간단하고 좋음
+    // 템플릿 문자열에서 줄바꿈이 가능하다
+    function printNumbers() {
+      let html = '';
+      for(let i=0; i<numbers.length; i++) {
+        html += `
+          <li>
+            <span>${numbers[i]}</span>
+            <button onclick='remove(${i})'>삭제</button>
+          </li>
+        `;
+      }
+      ulElement.innerHTML = html;
+    }
+    
+    printNumbers();
+
+    // 30만 출력됨 그 이유는 덮어쓰기 때문 그래서 직접 때려 박으면 안됨
+    // 바로 위에서 html 이라는 함수를 만들어 누적 시켜줘야함
+    // for 문 안에서 li 같은 문자들을 하나씩 붙여주고 마지막에 밖에서 ulElement 를 치환해주면 됨
+
+
+    // 다른 방식
+    // const li = document.getElementById('li');
+    // const span = document.getElementById('span');
+    // span.textContent = number
+    // const button = document.getElementById('button');
+    // button.value = "삭제";
+
+    // li.appendChild(span);
+    // li.appendChild(button);
+    // ulElement.appendChild(li);
+
+  </script>
+</body>
+</html>

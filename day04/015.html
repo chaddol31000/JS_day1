@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>성적 계산기</title>
+</head>
+<body>
+  <div id="jumsu">
+    국어점수 : <input type="number" id="kor" placeholder="0~100" min="0" max="150">
+    영어점수 : <input type="number" id="eng" placeholder="0~100" min="0" max="150">
+    수학점수 : <input type="number" id="math" placeholder="0~100" min="0" max="150">
+  </div>
+  <button id="calc">계산</button>
+  <div id="final">
+    <b>합계: <span id="result"></span>점 | </b>
+    <b>평균: <span id="avg"></span></b>
+  </div>
+  <script>
+    const korElement = document.getElementById('kor');
+    const engElement = document.getElementById('eng');
+    const mathElement = document.getElementById('math');
+    const calcButton = document.getElementById('calc');
+
+    calcButton.addEventListener('click', function(){
+      const kor = korElement.value;
+      const eng = engElement.value;
+      const math = mathElement.value;
+    })
+
+
+
+  </script>
+</body>
+</html>

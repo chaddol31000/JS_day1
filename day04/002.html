@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 반복문을 이용해 1에서 5까지 출력하시오
+    // 배열이 없기에 일반 반복문 사용
+    for (let i=1; 1<=5; i++) {
+      console.log(i);
+    }
+    // 리액트 : js + 리액트 고유 코드에서는 일반 반복문 x
+
+    const ar = [1,3,11,15,25];
+    // ar을 출력하시오
+    for (let i=0; i<5; i++) {
+      console.log(ar[i]);
+    }
+    for(const a of ar) {
+        console.log(a);
+    }
+
+    const br = [];
+    for (let i=0; i<3; i++) {
+      br[i] = i *100; 
+    }
+    console.log(br);
+  </script>
+</body>
+</html>
