@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <input type="number" id="num" placeholder="숫자 입력" onkeydown="">
+  <button id="deleteAll">전체삭제</button>
+  <ul id="target">
+
+  </ul>
+  <script>
+    const ulElement = document.getElementById('target');
+    const numbers = [75, 80, 85];
+    const inputElement = document.getElementById('num');
+
+    function inputNumber(event) {
+      if(event.key=='Enter') {
+        const num = Number(inputElement.value);
+        numbers.push(num);
+        inputElement.value="";
+        printNumbers();
+      }
+    }
+
+    function printNumbers() {
+      let html=' ';
+      for (const number of numbers){
+        html+=`
+        <li>
+          ${number}
+          <button onclick="remove()>삭제</button>
+        </li>
+        `
+      }
+    }
+  </script>
+</body>
+</html>
