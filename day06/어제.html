@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <!-- 3c257649b22d1ba014fdc15dac47c0f2 -->
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <td>순위</td>
+        <td>제목</td>
+        <td>지난 주</td>
+        <td>개봉일</td>
+        <td>관객</td>
+        <td>총 관객</td>
+        <td>점유율</td>
+      </tr>
+    </thead>
+    <tbody id="target">
+    </tbody>
+   </table>
+  <script>
+    // 사용자 확인하기 (인증)
+      // 1. 로그인 → MVC 에서만 사용 가능 → 제일 안전함
+        // ㄴ 아이디와 비밀번호로 백에서 사용자를 확인한 다음, 백에 로그인 정보를 저장하는 방식
+      // 2. api 키 발급
+        // 사용자의 api 키로 사용자를 확인
+        // 사용자가 키를 잃어버렸다면? 바로 문제가 발생
+      // 3. oauth 인증 방식 → rest 방식의 표준
+        // 네이버에 로그인하면 네이버에 입점한 사이트에서도 결제가 떨어진다
+          // ㄴ 네이버에 로그인할 때 내 정보를 담고 있는 암호화된 token 을 발급
+          // ㄴ 사용자 앱은 토큰을 저장한 다음 네이버 입전한 사이트에서 결제할 때 토큰을 제출
+          // ㄴ 입점 사이트는 토큰을 네이버로 보내서 검등한다
+          // ㄴ 검증에 성공하면 결제가 성립된다
+
+    const url = 'http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json';
+    const key = '3c257649b22d1ba014fdc15dac47c0f2';
+    const yesterday = dayjs().subtract(1, "day");
+    const targetDt = yesterday.format("YYYYMMDD");
+    // console.log(targetDt);
+    const 요청주소 = `${url}?key=${key}&targetDt=20250419`;
+    // console.log(요청주소);
+
+    async function fetch() {
+      try {
+        const response = await axios.get(요청주소);
+        const movies = response.data.boxOfficeResult.dailyBoxOfficeList;
+        printMovies(movies);
+      } catch(err) {
+        console.log(err);
+      }
+    }
+
+    function printMovies(movies) {
+      const target = document.getElementById('target');
+      let html ='';
+      for(m of movies) {
+        html+=`
+          <tr>
+            <td>${m.rank}</td>
+            <td>${m.movieNm}</td>
+            <td>${m.rankInten}</td>
+            <td>${m.openDt}</td>
+            <td>${Number(m.audiCnt).toLocaleString()}</td>
+            <td>${Number(m.audiAcc).toLocaleString()}</td>
+            <td>${m.salesShare}</td>
+          </tr>
+        `;
+      }
+      target.innerHTML = html;
+    }
+    fetch();
+  </script>
+</body>
+</html>

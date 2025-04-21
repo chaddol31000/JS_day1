@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // Promise 코드를 동기화하는 전통적인 방법
+    // then() 으로 연결
+    // 지금은 사용 x
+    axios.get('https://jsonplaceholder.typicode.com/post/1').then(function(response) {
+      console.log(response.data);
+    });
+
+    // 현재 자바스크립트의 표준
+    // 위 코드와 하는 일은 같음
+    async function fetch() {
+      const response = await axios.get('https://jsonplaceholder.typicode.com/post/1');
+      console.log(response.data);
+    }
+    fetch();
+
+    // then이 더 간단하지 않나?
+  </script>
+</body>
+</html>
