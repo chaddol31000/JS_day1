@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <title>변경/삭제</title>
+  <style>
+    #target {
+      height: 175px;
+    }
+  </style>
+  <script>
+    window.onload = async function () {
+      const contact = await fetch();
+      if(contact!=null)
+        printContact(contact);
+      else
+        alert("목록을 찾을 수 없습니다")
+    }
+
+    async function fetch() {
+      const searchParams = new URLSearchParams(location.search);
+      const cno=searchParams.get('cno');
+
+      if(cno==null)
+        location.href = '/day08/list.html';
+      
+      try {
+        const url = `http://192.168.0.19:8080/contacts/${cno}`
+        const response = await axios.get(url);
+        return response.data;
+      } catch(err) {
+        console.log(err);
+      }
+    }
+
+    const printContact=(contact)=> {
+      const tableElement = document.getElementById('target');
+      const html = `
+        <div class="mb-3 mt-3">
+          <label for="name" class="form-label">이름:</label>
+          <input type="text" class="form-control" id="name" value="${contact.name}" name="name" disabled>
+        </div>
+        <div class="mt-3 mb-3">
+          <label class="form-label" for="address">주소 :</label>
+          <input type="text" id="address" placeholder="주소 입력" class="form-control" onblur="addressCheck()">
+          <span id="address-msg" class="error"></span>
+        </div>
+        <div class="mt-3 mb-3">
+          <label class="form-label" for="tel">전화번호 :</label>
+          <input type="text" id="tel" placeholder="번호 입력" class="form-control" onblur="telCheck()">
+          <span id="tel-msg" class="error"></span>
+        </div>
+      `;
+      tableElement.innerHTML = html;
+    }
+
+    const update= async ()=> {
+      const searchParams = new URLSearchParams(location.search);
+      const cno = searchParams.get('cno');
+
+      const address = document.getElementById('address').value;
+      const tel = document.getElementById('tel').value;
+
+      const params = {cno, address, tel};
+
+      try {
+        await axios.put(`http://192.168.0.19:8080/contacts`, params);
+        location.reload();
+      } catch(err) {
+        console.log(err);
+      }
+    }
+
+    async function remove() {
+      const searchParams = new URLSearchParams(location.search);
+      const cno = searchParams.get('cno');
+      try {
+        await axios.delete(`http://192.168.0.19:8080/contacts/${cno}`)
+        location.href = "/day08/list.html"
+      } catch(err) {
+        console.log(err);
+      }
+    }
+  </script>
+</head>
+<body>
+  <table id="target" class="table table-border">
+  </table>
+  <div class="mt-3 mb-3">
+    <button id="update" class="btn btn-primary" onclick="update()">변경</button>
+    <button id="delete" class="btn btn-dark" onclick="remove()">삭제</button>
+    <a href="/day08/list.html" type="button" class="btn btn-secondary">돌아가기</a>
+  </div>
+</body>
+</html>
