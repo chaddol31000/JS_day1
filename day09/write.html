@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <title>Document</title>
+</head>
+<body>
+  <!--
+    multiple : 사진을 한 번에 여러 장을 선택할 수 있는 것 
+    file 요소에서 선택한 이미지는 files 라는 배열에 담긴다
+    accept : 이미지만 선택할 수 있게 하는 것
+  -->
+
+  <img id="photo-preview" style=" height:120px; min-height: 120px;">
+  <hr>
+  사진:<input type="file" id="photo" accept=".png, .jpg, .jpeg" onchange="preview(event)"><br>
+  이름:<input type="text" id="name"><br>
+  주소:<input type="text" id="address"><br>
+  연락처:<input type="text" id="tel"><br>
+  <button onclick="add()">회원가입</button>
+  <script>
+    // 자바스크립트와 리액트의 차이점
+      // 1. 자바스크립트는 ID 사용을 하지만 리액트는 ID 를 잘 사용하지 않음
+
+    // 일단 4개를 전부 다 호출
+    const photoElement = document.getElementById('photo');
+    const nameElement = document.getElementById('name');
+    const addressElement = document.getElementById('address');
+    const telElement = document.getElementById('tel'); 
+    // function 입력할 때는 검증을 거쳐야함 photo, name, address, tel 에 값이 다 들어있는지 if 문으로 확인
+    async function add() {
+      // 검증(validation)
+      if(nameElement.value=='') {
+        alert('이름을 입력하세요');
+        nameElement.focus();
+        return;
+      } else if(addressElement.value=='') {
+        alert('주소를 입력하세요');
+        addressElement.focus();
+        return;
+      } else if(telElement.value=='') {
+        alert('연락처를 입력하세요');
+        telElement.focus();
+        return;
+      }
+
+      // 값이 있다면 서버에 넘길 값 호출하기
+      const params = {
+        name : nameElement.value,
+        address : addressElement.value,
+        tel : telElement.value
+      };
+      try {
+        // response 라는 변수로 params 로 링크의 값을 불러내
+        const response = await axios.post('https://sample.bmaster.kro.kr/contacts', params);
+        // response 된 data 에서 no 를 보내줄거야
+        const no = response.data.no;
+        // 성공했다면 사진을 등록해야겠지? 일단 사진을 꺼내자
+        // 사진을 선택했다면 files 의 0번째에 저장되어 있음 → 확인 후 선택하지 않았다면 읽기 페이지로 이동
+        // ↓ 사진 변경
+        const photo = photoElement.files[0];
+        if(photo==undefined) {
+          location.href =`/day09/read.html?no=${no}`;
+        }
+        // FormData 라는 내장객체를 사용해 photo 추가하기
+        // 괄호에 들어가는 건 폼이어야함 폼을 만들어도 되지만 섞이면 안됨
+        const formData = new FormData();
+        formData.append('photo', photo);
+        await axios.post('http://sample.bmaster.kro.kr/contacts/' + no + '/photo', formData);
+        location.href = `/day09/read.html?no=${no}`;
+      } catch (err) {
+        // 만약 실패한다면 err 메세지를 출력해
+        console.log(err);
+      }
+    }
+    // preview 이벤트 처리하기! 
+    function preview(event)  {
+      // 선택한 파일 정보
+      const file = event.target.files[0];
+
+      // 미리보기를 해보자 → 미리 보기 하려면 파일을 읽어와야해
+      const previewElement = document.getElementById('photo-preview');
+      if(file) {
+        // 사진을 선택했다면 사진을 읽어오자
+          // 1. 파일을 읽어오는 내장 객체를 생성하자
+          // 2. reader 가 파일을 읽어오고 나면 실행할 이벤트 처리 함수
+            // 즉, 비동기 함수  reader.readAsDataURL(file) 가 완료된 다음에 실행할 코드
+            // 그런데 왜 2번일까
+              // 2번과 3번의 순서를 바꾸면 
+            // 사용자 컴퓨터의 코드가 접근하는 식의 코드는 작성하면 안됨
+            // 
+          // 3. 파일을 읽어오자
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            previewElement.src = e.target.result;
+        }
+        reader.readAsDataURL(file);
+      } else {
+        // 사진을 취소했다면
+        previewElement.src = '';
+      }
+    }
+  </script>
+
+
+</body>
+</html>
